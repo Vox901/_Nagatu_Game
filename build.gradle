@@ -1,0 +1,38 @@
+buildscript {
+  repositories {
+    mavenCentral()
+    google()
+    gradlePluginPortal()
+  }
+  dependencies {
+    classpath 'com.android.tools.build:gradle:9.2.1'
+  }
+}
+
+allprojects {
+  apply plugin: "eclipse"
+  apply plugin: "idea"
+
+  repositories {
+    mavenCentral()
+    google()
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url 'https://oss.sonatype.org/content/repositories/releases' }
+  }
+}
+
+project(":core") {
+  apply plugin: "java-library"
+
+  java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+  }
+}
+
+subprojects {
+  version = '1.0.0'
+  ext.appName = "Nagatu"
+}
+
+eclipse.project.name = 'Nagatu'
